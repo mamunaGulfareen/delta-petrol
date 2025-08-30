@@ -1,0 +1,34 @@
+@import "tailwindcss";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.poppins-medium {
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Calibri";
+  src: url("../public/font/calibri-font-family/calibri-regular.ttf")
+    format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+.font-calibri {
+  font-family: "Calibri", sans-serif;
+}
+
+button[aria-label="Stop Scanning"] {
+  display: none !important;
+}
+
+html,
+body,
+#root {
+  overflow: hidden;
+}
