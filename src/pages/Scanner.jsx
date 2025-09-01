@@ -209,14 +209,15 @@ function Scane() {
                 </div>
               </div>
               {showSuccess && animationData && (
-                <div className="fixed inset-0 z-50 flex justify-center items-center ">
+                <div className="fixed inset-0 z-50 flex justify-center items-center">
                   <Lottie
                     animationData={animationData}
                     loop={false}
-                    style={{ width: "100%", height: "100%" }}
+                    style={{ width: "75%", height: "75%" }}
                   />
                 </div>
               )}
+
 
 
               <div className="w-full flex justify-center items-center">
