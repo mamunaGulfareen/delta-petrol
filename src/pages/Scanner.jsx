@@ -31,15 +31,15 @@ function Scane() {
   const startTimeRef = useRef(null);
   const [loading, setLoading] = useState(false);
   const [animationData, setAnimationData] = useState(null);
- useEffect(() => {
-  console.log("Scanning state changed:", isScanning);
-  console.log("Scan result:", scanResult);
-  
-  if (isScanning && !scanResult) {
-    startTimeRef.current = Date.now();
-    console.log("Started scanning at:", startTimeRef.current);
-  }
-}, [isScanning, scanResult]);
+  useEffect(() => {
+    console.log("Scanning state changed:", isScanning);
+    console.log("Scan result:", scanResult);
+
+    if (isScanning && !scanResult) {
+      startTimeRef.current = Date.now();
+      console.log("Started scanning at:", startTimeRef.current);
+    }
+  }, [isScanning, scanResult]);
   useEffect(() => {
     fetch("/Complete.json")
       .then((res) => res.json())
@@ -131,37 +131,37 @@ function Scane() {
       }
     }
   }
- useEffect(() => {
-  let timer;
-  let interval;
+  useEffect(() => {
+    let timer;
+    let interval;
 
-  if (isScanning && !scanResult) {
-    startTimeRef.current = Date.now();
+    if (isScanning && !scanResult) {
+      startTimeRef.current = Date.now();
 
-    // ⏱ Log elapsed time every second
-    interval = setInterval(() => {
-      if (startTimeRef.current) {
-        const elapsed = Math.floor((Date.now() - startTimeRef.current) / 1000);
-        console.log("⏱ Scanning... elapsed:", elapsed, "seconds");
-      }
-    }, 1000);
+      // ⏱ Log elapsed time every second
+      interval = setInterval(() => {
+        if (startTimeRef.current) {
+          const elapsed = Math.floor((Date.now() - startTimeRef.current) / 1000);
+          console.log("⏱ Scanning... elapsed:", elapsed, "seconds");
+        }
+      }, 1000);
 
-    // Set timeout for 20 seconds
-    timer = setTimeout(() => {
-      if (startTimeRef.current) {
-        const elapsed = Math.floor((Date.now() - startTimeRef.current) / 1000);
-        console.log("⏱ Timeout after:", elapsed, "seconds");
-        setIsScanning(false);
-        navigate("/scanner-info");
-      }
-    }, 20000);
-  }
+      // Set timeout for 20 seconds
+      timer = setTimeout(() => {
+        if (startTimeRef.current) {
+          const elapsed = Math.floor((Date.now() - startTimeRef.current) / 1000);
+          console.log("⏱ Timeout after:", elapsed, "seconds");
+          setIsScanning(false);
+          navigate("/scanner-info");
+        }
+      }, 30000);
+    }
 
-  return () => {
-    clearTimeout(timer);
-    clearInterval(interval);
-  };
-}, [isScanning, scanResult, navigate]);
+    return () => {
+      clearTimeout(timer);
+      clearInterval(interval);
+    };
+  }, [isScanning, scanResult, navigate]);
   return (
     <>
       <div className="flex justify-center items-center h-screen w-full bg-gray-100">
