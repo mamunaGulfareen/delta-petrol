@@ -27,8 +27,4 @@ button[aria-label="Stop Scanning"] {
   display: none !important;
 }
 
-html,
-body,
-#root {
-  overflow: hidden;
-}
+
