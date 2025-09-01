@@ -1,9 +1,10 @@
 /* eslint-disable no-unused-vars */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Scanner } from "@yudiel/react-qr-scanner";
+import Lottie from "lottie-react";
 
 
 function Scane() {
@@ -26,8 +27,25 @@ function Scane() {
   }, [navigate]);
   const [isScanning, setIsScanning] = useState(false);
   const [scanResult, setScanResult] = useState("");
-  const [scannerOpen, setScannerOpen] = useState(true);
+  const [showSuccess, setShowSuccess] = useState(false);
+  const startTimeRef = useRef(null);
   const [loading, setLoading] = useState(false);
+  const [animationData, setAnimationData] = useState(null);
+ useEffect(() => {
+  console.log("Scanning state changed:", isScanning);
+  console.log("Scan result:", scanResult);
+  
+  if (isScanning && !scanResult) {
+    startTimeRef.current = Date.now();
+    console.log("Started scanning at:", startTimeRef.current);
+  }
+}, [isScanning, scanResult]);
+  useEffect(() => {
+    fetch("/Complete.json")
+      .then((res) => res.json())
+      .then((data) => setAnimationData(data));
+  }, []);
+
   const token = JSON.parse(localStorage.getItem("token"));
 
 
@@ -63,11 +81,18 @@ function Scane() {
       });
 
       if (!response.ok) {
-
         const errData = await response.json().catch(() => null);
-        toast.error(errData?.error || response.statusText || "Something went wrong");
+
+        // Detect duplicate invoice error
+        if (errData?.error?.includes("E11000")) {
+          toast.error("Esta Factura ya fue Escaneada");
+        } else {
+          toast.error(errData?.error || response.statusText || "Something went wrong");
+        }
+
         return;
       }
+
       const finalData = await response.json();
       navigate("/detail", { state: { invoice: finalData } });
     } catch (err) {
@@ -91,24 +116,52 @@ function Scane() {
       console.log("Scanned QR:", rawValue);
       setScanResult(rawValue);
       setIsScanning(false);
-    }
-    else {
+      setShowSuccess(true);
+      setTimeout(() => setShowSuccess(false), 3000);
+      if (startTimeRef.current) {
+        const elapsed = Math.floor((Date.now() - startTimeRef.current) / 1000);
+        console.log("✅ QR detect hua in:", elapsed, "seconds");
+        toast.info(`QR detect hua in ${elapsed} seconds`);
+      }
+
+      setTimeout(() => setShowSuccess(false), 3000);
+    } else {
       if (!isScanning) {
         setIsScanning(true);
       }
-    };
-  }
-  useEffect(() => {
-    let timer;
-
-    if (isScanning && !scanResult) {
-      timer = setTimeout(() => {
-        navigate("/scanner-info");
-      }, 30000);
     }
+  }
+ useEffect(() => {
+  let timer;
+  let interval;
 
-    return () => clearTimeout(timer);
-  }, [isScanning, scanResult, navigate]);
+  if (isScanning && !scanResult) {
+    startTimeRef.current = Date.now();
+
+    // ⏱ Log elapsed time every second
+    interval = setInterval(() => {
+      if (startTimeRef.current) {
+        const elapsed = Math.floor((Date.now() - startTimeRef.current) / 1000);
+        console.log("⏱ Scanning... elapsed:", elapsed, "seconds");
+      }
+    }, 1000);
+
+    // Set timeout for 20 seconds
+    timer = setTimeout(() => {
+      if (startTimeRef.current) {
+        const elapsed = Math.floor((Date.now() - startTimeRef.current) / 1000);
+        console.log("⏱ Timeout after:", elapsed, "seconds");
+        setIsScanning(false);
+        navigate("/scanner-info");
+      }
+    }, 20000);
+  }
+
+  return () => {
+    clearTimeout(timer);
+    clearInterval(interval);
+  };
+}, [isScanning, scanResult, navigate]);
   return (
     <>
       <div className="flex justify-center items-center h-screen w-full bg-gray-100">
@@ -151,12 +204,19 @@ function Scane() {
                 ></div>
 
                 <div className="w-[280px] h-[280px] rounded-[12px] overflow-hidden">
-                  <Scanner onScan={handleScan} components={{ finder: false }} constraints={{ facingMode: "environment", width: { ideal: 1280 }, height: { ideal: 720 }, }} scanDelay={500} />
+                  <Scanner onScan={handleScan} components={{ finder: false }} sound={false} constraints={{ facingMode: "environment", width: { ideal: 1280 }, height: { ideal: 720 }, }} scanDelay={500} />
 
                 </div>
               </div>
-
-
+              {showSuccess && animationData && (
+                <div className="fixed inset-0 z-50 flex justify-center items-center ">
+                  <Lottie
+                    animationData={animationData}
+                    loop={false}
+                    style={{ width: "100%", height: "100%" }}
+                  />
+                </div>
+              )}
 
 
               <div className="w-full flex justify-center items-center">

@@ -56,7 +56,7 @@ function SelectMode() {
                             href="https://www.petrodelta.com/pa/promolomaximo/"
                             target="_blank"
                             rel="noopener noreferrer"
-                        >
+                       >
                             <p className="font-Calibri font-normal text-[10px] leading-[52px] text-white tracking-normal text-center underline">
                                 Ver terminos y condiciones
                             </p>
