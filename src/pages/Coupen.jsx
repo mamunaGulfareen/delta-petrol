@@ -27,10 +27,9 @@ function Coupen() {
     const [profile, setProfile] = useState(null);
 
     const [loading, setLoading] = useState(true);
-    const userData = JSON.parse(localStorage.getItem("user"));
-    const token = userData?.token;
+    const token = JSON.parse(localStorage.getItem("token"));
 
-    const baseUrl = "/api";
+    const baseUrl = "https://www.deltalomaximo.com/gas_backend/";
 
     useEffect(() => {
         const fetchUser = async () => {

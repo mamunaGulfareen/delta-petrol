@@ -28,8 +28,8 @@ function Scane() {
   const [scanResult, setScanResult] = useState("");
   const [scannerOpen, setScannerOpen] = useState(true);
   const [loading, setLoading] = useState(false);
-  const userData = JSON.parse(localStorage.getItem("user"));
-  const token = userData?.token;
+  const token = JSON.parse(localStorage.getItem("token"));
+
 
   const baseUrl = "https://www.deltalomaximo.com/gas_backend/";
 
@@ -134,9 +134,9 @@ function Scane() {
             <img src="/logo-2.png" alt="Logo" className="max-w-[71.5px]" />
 
             <div className="gap-7 flex flex-col justify-center items-center w-full">
-              <h1 className="font-calibri text-white text-[27px] leading-[30px] text-center">
-                <span className="font-bold">VALIDA </span>
-                <span className="font-normal">TU FACTURA</span>
+              <h1 className="font-calibri text-white text-[27px] flex flex-col leading-[30px] text-center">
+                <span className="font-bold">  Coloca el QR de tu  </span>
+                <span className="font-normal">factura en el visor.</span>
               </h1>
 
               <div className="relative w-[296px] h-[294px] rounded-[22.5px] flex justify-center items-center">
@@ -153,16 +153,10 @@ function Scane() {
                 <div className="w-[280px] h-[280px] rounded-[12px] overflow-hidden">
                   <Scanner onScan={handleScan} components={{ finder: false }} constraints={{ facingMode: "environment", width: { ideal: 1280 }, height: { ideal: 720 }, }} scanDelay={500} />
 
-
-
                 </div>
               </div>
 
-              <div className="w-[303px] !p-[22px] flex justify-center items-center rounded-xl bg-[#E12200] cursor-pointer">
-                <button className="poppins-medium text-white text-[20px] leading-[100%] tracking-[0] text-center w-full">
-                  {loading ? "VALIDATE..." : "VALIDAR"}
-                </button>
-              </div>
+              
 
 
               <div className="w-full flex justify-center items-center">

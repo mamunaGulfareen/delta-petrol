@@ -46,7 +46,6 @@ function Register() {
             newErrors.email = "Invalid email format";
         }
         if (!formData.password) newErrors.password = "Password";
-        if (!formData.phone) newErrors.phone = "Phone";
 
         setErrors(newErrors);
 
@@ -56,10 +55,9 @@ function Register() {
             if (
                 !formData.name &&
                 !formData.email &&
-                !formData.password &&
-                !formData.phone
+                !formData.password 
             ) {
-                toast.error("Please fill all fields", { autoClose: 5000 });
+                toast.error("Please fill name,email,password fields", { autoClose: 5000 });
             } else {
                 const combinedMessage = errorKeys.join(", ") + " is missing";
                 toast.error(combinedMessage, { autoClose: 5000 });

@@ -53,7 +53,7 @@ function SelectMode() {
 
                     <div className="pt-10">
                         <a
-                            href="https://www.google.com/"
+                            href="https://www.petrodelta.com/pa/promolomaximo/"
                             target="_blank"
                             rel="noopener noreferrer"
                         >
