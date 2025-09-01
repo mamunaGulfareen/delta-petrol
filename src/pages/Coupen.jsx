@@ -153,7 +153,7 @@ function Coupen() {
                                             <span
                                                 className="poppins-medium text-white text-[20px] leading-none text-center w-full">
 
-                                                Edit Profile
+                                                EDITAR PERFIL
                                             </span>
                                         </div>
                                     </Link>

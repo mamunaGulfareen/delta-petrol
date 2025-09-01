@@ -12,7 +12,7 @@ function Screen_6() {
                 ></div>
 
 
-                <div className="absolute  top-47 w-full gap-1 flex flex-col justify-center items-center z-10">
+                <div className="absolute  top-47 w-full gap-4 flex flex-col justify-center items-center z-10">
                     <img src="/logo-2.png" alt="Logo" className="max-w-[171.5px]" />
 
                     <div className="gap-14 !mt-18 flex flex-col justify-center items-center w-full">
@@ -23,11 +23,18 @@ function Screen_6() {
                             </h1>
 
                             <p className="poppins-medium !pt-6 font-normal text-[20px] leading-[26px] max-w-xs">
-                                Esto puede tomar un ;empo, te no;ficareemos una vez tengas tus cupones. <span className='font-bold text-[20px] leading-[26px] text-center'>¡GRACIAS!</span>
+                                Esto puede tomar un Tiempo, te notficaremos una vez tengas tus cupones. <span className='font-bold text-[20px] leading-[26px] text-center'>¡GRACIAS!</span>
                             </p>
 
                         </div>
                     </div>
+                    <Link to="/edit-profile">
+                        <div className="w-[303px] !p-[21px] flex justify-center items-center rounded-xl bg-[#57ABF0]">
+                            <span className="poppins-medium text-white text-[20px] leading-[100%] tracking-[0] text-center">
+                                VER CUPONES
+                            </span>
+                        </div>
+                    </Link>
                 </div>
                 <div className='absolute bottom-28  left-0 w-full  z-10'>
                     <div className="w-full flex justify-center items-center">

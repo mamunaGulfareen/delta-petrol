@@ -51,7 +51,6 @@ function Scane() {
         return;
       }
       const data = await res.json();
-      console.log("Scraped invoice:", data);
       const { ...invoicePayload } = data;
 
       const response = await fetch(`${baseUrl}/invoices`, {
@@ -64,6 +63,7 @@ function Scane() {
       });
 
       if (!response.ok) {
+
         const errData = await response.json().catch(() => null);
         toast.error(errData?.error || response.statusText || "Something went wrong");
         return;
@@ -156,7 +156,7 @@ function Scane() {
                 </div>
               </div>
 
-              
+
 
 
               <div className="w-full flex justify-center items-center">
