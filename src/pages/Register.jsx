@@ -178,7 +178,7 @@ function Register() {
                                     disabled={loading}
                                 >
                                     <span className="poppins-medium text-white text-[20px] leading-[100%] tracking-[0] text-center">
-                                        {loading ? "Loading..." : "Registrate"}
+                                        {loading ? "Loading..." : "REGISTRATE"}
                                     </span>
                                 </button>
                                 <Link
