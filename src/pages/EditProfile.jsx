@@ -26,7 +26,6 @@ function EditProfile() {
         name: "",
         phone: ""
     });
-    const [countryCode, setCountryCode] = useState("+1");
     const [loading, setLoading] = useState(false);
     const [errors, setErrors] = useState({});
     const [fetching, setFetching] = useState(true);
@@ -94,7 +93,7 @@ function EditProfile() {
                 },
                 body: JSON.stringify({
                     ...formData,
-                    phone: countryCode + formData.phone.replace(/^0+/, "")
+                    phone:formData.phone.replace(/^0+/, "")
                 })
             });
 
