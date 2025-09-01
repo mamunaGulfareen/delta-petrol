@@ -58,7 +58,7 @@ function ResetPassword() {
         }
         return true;
     };
-
+    const baseUrl = import.meta.env.VITE_BASE_URL;
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!validate()) return;
@@ -66,7 +66,7 @@ function ResetPassword() {
         setLoading(true);
 
         try {
-            const res = await fetch("https://www.deltalomaximo.com/gas_backend/auth/password/reset", {
+            const res = await fetch(`${baseUrl}/auth/password/reset`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({

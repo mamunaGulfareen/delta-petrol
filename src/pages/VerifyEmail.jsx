@@ -65,7 +65,7 @@ function VerifyCode() {
         setLoading(true);
 
         try {
-            const baseUrl = "https://www.deltalomaximo.com/gas_backend/";
+            const baseUrl = import.meta.env.VITE_BASE_URL;
             const res = await fetch(`${baseUrl}/auth/register/verify`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },

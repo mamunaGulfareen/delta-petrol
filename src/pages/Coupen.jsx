@@ -29,7 +29,7 @@ function Coupen() {
     const [loading, setLoading] = useState(true);
     const token = JSON.parse(localStorage.getItem("token"));
 
-    const baseUrl = "https://www.deltalomaximo.com/gas_backend/";
+    const baseUrl = import.meta.env.VITE_BASE_URL;
 
     useEffect(() => {
         const fetchUser = async () => {
@@ -37,7 +37,7 @@ function Coupen() {
             try {
                 setFetching(true);
 
-                const res = await fetch("https://www.deltalomaximo.com/gas_backend/users/me", {
+                const res = await fetch(`${baseUrl}/users/me`, {
                     headers: {
                         "Content-Type": "application/json",
                         Authorization: `Bearer ${token}`

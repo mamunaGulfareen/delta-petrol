@@ -40,7 +40,7 @@ function ForgotPassword() {
     };
 
     const ForgotPassword = async (email) => {
-        const baseUrl = "https://www.deltalomaximo.com/gas_backend/";
+        const baseUrl = import.meta.env.VITE_BASE_URL;
         const loginRes = await fetch(`${baseUrl}/auth/password/forgot`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },

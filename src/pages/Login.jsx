@@ -45,7 +45,7 @@ function Login() {
     };
 
     const loginUser = async (email, password) => {
-        const baseUrl = "https://www.deltalomaximo.com/gas_backend/";
+        const baseUrl = import.meta.env.VITE_BASE_URL;
         const loginRes = await fetch(`${baseUrl}/auth/login`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },

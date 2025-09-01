@@ -41,7 +41,7 @@ function Scane() {
     }
   }, [isScanning, scanResult]);
   useEffect(() => {
-    fetch("/Complete.json")
+    fetch("/complete.json")
       .then((res) => res.json())
       .then((data) => setAnimationData(data));
   }, []);
@@ -49,7 +49,7 @@ function Scane() {
   const token = JSON.parse(localStorage.getItem("token"));
 
 
-  const baseUrl = "https://www.deltalomaximo.com/gas_backend/";
+  const baseUrl = import.meta.env.VITE_BASE_URL;
 
   const sendScanResult = async (result) => {
     try {

@@ -76,7 +76,7 @@ function Register() {
         e.preventDefault();
         if (!validate()) return;
 
-        const baseUrl = "https://www.deltalomaximo.com/gas_backend/";
+        const baseUrl = import.meta.env.VITE_BASE_URL;
         setLoading(true);
 
         try {
