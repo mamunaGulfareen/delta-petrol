@@ -91,7 +91,6 @@ function Register() {
                 const errorData = await res.json();
                 let message = errorData.error || "Failed to register";
 
-                // 👇 Custom mapping
                 if (message == "Email already in use") {
                     message = "Cuenta existente";
                 }
