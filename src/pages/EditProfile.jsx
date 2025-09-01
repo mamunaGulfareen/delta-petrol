@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { countryCodes } from "../utils/country";
 import Loading from "../components/loading";
 function EditProfile() {
     const navigate = useNavigate();
@@ -48,12 +47,6 @@ function EditProfile() {
                 const data = await res.json();
 
                 let userPhone = data.phone || "";
-                let matchedCode = countryCodes.find(c => userPhone.startsWith(c.code));
-
-                if (matchedCode) {
-                    setCountryCode(matchedCode.code);
-                    userPhone = userPhone.replace(matchedCode.code, "");
-                }
 
                 setFormData({
                     name: data.name || "",
