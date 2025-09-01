@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 function Info() {
     return (
         <div className="flex justify-center items-center h-screen w-full bg-gray-100">
-            <div className="relative h-full md:h-[844px] w-full md:max-w-[390px] overflow-hidden">
+            <div className="relative h-full md:h-[844px] w-full md:max-w-[390px] overflow-hidden overflow-y-auto overflow-x-auto">
                 <div
                     className="absolute inset-0 h-full bg-cover z-0"
                     style={{ backgroundImage: "url('/bg-img-6.png')" }}

@@ -54,7 +54,7 @@ function Register() {
             if (
                 !formData.name &&
                 !formData.email &&
-                !formData.password 
+                !formData.password
             ) {
                 toast.error("Please fill name,email,password fields", { autoClose: 5000 });
             } else {
@@ -89,8 +89,17 @@ function Register() {
 
             if (!res.ok) {
                 const errorData = await res.json();
-                throw new Error(errorData.message || "Failed to register");
+                let message = errorData.error || "Failed to register";
+
+                // 👇 Custom mapping
+                if (message == "Email already in use") {
+                    message = "Cuenta existente";
+                }
+
+                throw new Error(message);
+
             }
+
 
             toast.success("Registration  successful! ");
             setTimeout(() => navigate("/verify-email"), 2000);
@@ -107,8 +116,8 @@ function Register() {
 
     return (
         <>
-            <div className="flex justify-center items-start w-full h-screen bg-gray-100 overflow-hidden">
-                <div className="relative w-full pb-3 md:max-w-[390px] h-full md:min-h-0 md:h-[844px] overflow-hidden">
+            <div className="flex justify-center items-start w-full h-screen bg-gray-100 overflow-hidden overflow-y-auto overflow-x-auto">
+                <div className="relative w-full pb-3 md:max-w-[390px] h-full md:min-h-0 md:h-[844px] overflow-hidden overflow-y-auto overflow-x-auto">
                     <div
                         className="fixed top-0 left-0 w-full h-full lg:hidden block bg-cover bg-center z-0 "
                         style={{ backgroundImage: "url('/bg-img-2.png')" }}
@@ -119,7 +128,7 @@ function Register() {
                             backgroundImage: "url('/bg-img-2.png')"
                         }}
                     ></div>
-                    <div className="relative z-10  h-full flex flex-col  items-center justify-center  overflow-hidden">
+                    <div className="relative z-10  h-full flex flex-col  items-center justify-center ">
 
                         <form
                             onSubmit={handleSubmit}
@@ -162,7 +171,7 @@ function Register() {
                                 </div>
                                 <div className="w-[303px] !pl-[11px] !pr-[2px] bg-white rounded-[12px] flex items-center shadow-md relative">
                                     <input
-                                        
+
                                         type="tel"
                                         name="phone"
                                         value={formData.phone}

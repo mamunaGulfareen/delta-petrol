@@ -93,7 +93,7 @@ function Coupen() {
                     <Loading />
                 ) : (
                     <div className="flex justify-center items-center h-screen w-full bg-gray-100">
-                        <div className="relative h-full pb-3 md:h-[844px] w-full md:max-w-[390px] overflow-hidden">
+                        <div className="relative h-full pb-3 md:h-[844px] w-full md:max-w-[390px] overflow-hidden overflow-y-auto overflow-x-auto">
 
                             <div
                                 className="fixed block lg:hidden inset-0 bg-cover bg-center z-0"

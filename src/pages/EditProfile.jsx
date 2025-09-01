@@ -126,8 +126,8 @@ function EditProfile() {
             {fetching ? (
                 <Loading />
             ) : (
-                <div className="flex justify-center items-start w-full h-screen bg-gray-100 overflow-hidden">
-                    <div className="relative w-full md:max-w-[390px] pb-3 h-full md:min-h-0 md:h-[844px] overflow-hidden">
+                <div className="flex justify-center items-start w-full h-screen bg-gray-100 overflow-hidden overflow-y-auto overflow-x-auto">
+                    <div className="relative w-full md:max-w-[390px] pb-3 h-full md:min-h-0 md:h-[844px] overflow-hidden overflow-y-auto overflow-x-auto">
                         <div
                             className="fixed top-0 left-0 w-full h-full lg:hidden block bg-cover bg-center z-0"
                             style={{ backgroundImage: "url('/bg-img-2.png')" }}
@@ -136,7 +136,7 @@ function EditProfile() {
                             className="absolute h-full inset-0 bg-cover hidden lg:block z-0 bg-no-repeat"
                             style={{ backgroundImage: "url('/bg-img-2.png')" }}
                         ></div>
-                        <div className="relative z-10 h-full flex flex-col gap-4 items-center justify-center overflow-hidden">
+                        <div className="relative z-10 h-full flex flex-col gap-4 items-center justify-center ">
 
                             <form
                                 onSubmit={handleSubmit}
